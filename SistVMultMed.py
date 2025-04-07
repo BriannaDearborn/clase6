@@ -49,6 +49,12 @@ class Mascota:
         self.__fecha_ingreso=f
     def asignarLista_Medicamentos(self,n):
         self.__lista_medicamentos = n 
+    def eliminarMedicamento(self, nombre_med):
+        for med in self.__lista_medicamentos:
+            if med.verNombre().lower() == nombre_med.lower():
+                self.__lista_medicamentos.remove(med)
+                return True
+        return False
     
 class sistemaV:
     def __init__(self):
@@ -88,6 +94,12 @@ class sistemaV:
                 self.__lista_mascotas.remove(masc)  #opcion con el pop
                 return True  #eliminado con exito
         return False 
+    
+    def eliminarMedicamentoMascota(self, historia, nombre_medicamento):
+        mascota = self.buscarMascota(historia)
+        if mascota:
+            return mascota.eliminarMedicamento(nombre_medicamento)
+        return False
 
 def main():
     servicio_hospitalario = sistemaV()
@@ -99,7 +111,8 @@ def main():
                        \n3- Ver número de mascotas en el servicio 
                        \n4- Ver medicamentos que se están administrando
                        \n5- Eliminar mascota 
-                       \n6- Salir 
+                       \n6- Eliminar medicamento
+                       \n7- Salir
                        \nUsted ingresó la opción: ''' ))
         if menu==1: # Ingresar una mascota 
             if servicio_hospitalario.verNumeroMascotas() >= 10:
@@ -166,8 +179,16 @@ def main():
                 print("Mascota eliminada del sistema con exito")
             else:
                 print("No se ha podido eliminar la mascota")
+
+        elif menu == 6:
+            historia = int(input("Historia clínica: "))
+            nombre_med = input("Nombre del medicamento a eliminar: ")
+            if servicio.eliminarMedicamentoMascota(historia, nombre_med):
+                print("Medicamento eliminado.")
+            else:
+                print("No se encontró ese medicamento o mascota.")
         
-        elif menu==6:
+        elif menu==7:
             print("Usted ha salido del sistema de servicio de hospitalización...")
             break
         
