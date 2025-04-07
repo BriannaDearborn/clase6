@@ -1,4 +1,4 @@
-from datetime import datetime
+
 class Medicamento:
     def __init__(self):
         self.__nombre = "" 
@@ -48,13 +48,7 @@ class Mascota:
     def asignarFecha(self,f):
         self.__fecha_ingreso=f
     def asignarLista_Medicamentos(self,n):
-        self.__lista_medicamentos = n
-    def eliminarMedicamento(self, nombre_med):
-        for med in self.__lista_medicamentos:
-            if med.verNombre().lower() == nombre_med.lower():
-                self.__lista_medicamentos.remove(med)
-                return True
-        return False
+        self.__lista_medicamentos = n 
     
 class sistemaV:
     def __init__(self):
