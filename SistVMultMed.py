@@ -197,7 +197,7 @@ def main():
         elif menu == 6:
             historia = int(input("Historia clínica: "))
             nombre_med = input("Nombre del medicamento a eliminar: ")
-            if servicio.eliminarMedicamentoMascota(historia, nombre_med):
+            if servicio_hospitalario.eliminarMedicamentoMascota(historia, nombre_med):
                 print("Medicamento eliminado.")
             else:
                 print("No se encontró ese medicamento o mascota.")
