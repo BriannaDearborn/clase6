@@ -127,6 +127,9 @@ def main():
             if servicio_hospitalario.verificarExiste(historia) == False:
                 nombre=input("Ingrese el nombre de la mascota: ")
                 tipo=input("Ingrese el tipo de mascota (felino o canino): ")
+                if tipo not in ["canino", "felino"]:
+                 print("Tipo inválido.")
+                 continue
                 peso=int(input("Ingrese el peso de la mascota: "))
                 fecha=input("Ingrese la fecha de ingreso (dia/mes/año): ")
                 if not validar_fecha(fecha):
@@ -134,9 +137,13 @@ def main():
                  continue
                 nm=int(input("Ingrese cantidad de medicamentos: "))
                 lista_med=[]
+                nombres_usados = set()
 
                 for i in range(0,nm):
                     nombre_medicamentos = input("Ingrese el nombre del medicamento: ")
+                    if nombre_medicamentos.lower() in nombres_usados:
+                     print("Medicamento repetido. No se puede ingresar dos veces.")
+                     continue
                     dosis =int(input("Ingrese la dosis: "))
                     medicamento = Medicamento()
                     medicamento.asignarNombre(nombre_medicamentos)
