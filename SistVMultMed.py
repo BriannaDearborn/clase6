@@ -98,6 +98,12 @@ class sistemaV:
         if mascota:
             return mascota.eliminarMedicamento(nombre_medicamento)
         return False
+    def validar_fecha(fecha):
+     try:
+        datetime.strptime(fecha, "%d/%m/%Y")
+        return True
+     except ValueError:
+        return False
 
 def main():
     servicio_hospitalario = sistemaV()
@@ -123,6 +129,9 @@ def main():
                 tipo=input("Ingrese el tipo de mascota (felino o canino): ")
                 peso=int(input("Ingrese el peso de la mascota: "))
                 fecha=input("Ingrese la fecha de ingreso (dia/mes/año): ")
+                if not validar_fecha(fecha):
+                 print("Formato de fecha inválido. Use dd/mm/aaaa.")
+                 continue
                 nm=int(input("Ingrese cantidad de medicamentos: "))
                 lista_med=[]
 
